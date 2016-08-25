@@ -1,0 +1,4 @@
+drift rates (v) for all conds don't converge
+	try:
+	    -longer chain (more samples) with more burn and more thinning
+		model.sample(10000, burn=5000, thin=5)
