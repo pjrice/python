@@ -1,0 +1,9 @@
+# hddm.HDDMRegressor(data, "a ~ rulert:C(tms, Treatment('NV'))", depends_on={'v': 'stim'})
+
+model filenames: fullsplit0-4
+db filenames: fullsplit_traces0-4.db
+
+
+gelman-rubin indicates convergence
+autocorrelation in boundary dist. (a) parameters a bit wonky though
+plots created from model0

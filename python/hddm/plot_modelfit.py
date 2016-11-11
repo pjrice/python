@@ -13,8 +13,12 @@ except:
 
 i = int(input('Load which model? '))
 
-model = hddm.load('Z://Work//UW//projects//RR_TMS//hddm//models//by_cond//va_stim%i'%i)
+model = hddm.load('Z://Work//UW//projects//RR_TMS//hddm//models//by_cond//fullsplit%i'%i)
 
 model.plot_posterior_predictive(figsize=(14,10))
 
 print("Model DIC: %f"%model.dic)
+
+model.plot_posterior_predictive()
+plt.show()
+plt.savefig('foo.pdf')

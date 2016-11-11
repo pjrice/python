@@ -1,0 +1,7 @@
+# hddm.HDDMRegressor(data, "v ~ rulert:C(tms, Treatment('NV'))", depends_on={'a': 'stim'}).
+
+model filenames: fullsplit_vaswap0-4
+db filenames: fullsplit_vaswap_traces0-4.db
+
+gelman-rubin indicates convergence
+plots created from model0
