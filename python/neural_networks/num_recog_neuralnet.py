@@ -78,10 +78,24 @@ def error(i, response):
 
 def target(val):
     """Desired response function, t(p)"""
-    if  np.all(val == num):
-        return 1.0
-    else:
-        return 0.0
+    if  np.all(val == num1):
+        return [1,0,0,0,0,0,0,0,0]   
+    elif np.all(val == num2):
+        return [0,1,0,0,0,0,0,0,0]
+    elif np.all(val == num3):
+        return [0,0,1,0,0,0,0,0,0]
+    elif np.all(val == num4):
+        return [0,0,0,1,0,0,0,0,0]
+    elif np.all(val == num5):
+        return [0,0,0,0,1,0,0,0,0]
+    elif np.all(val == num6):
+        return [0,0,0,0,0,1,0,0,0]
+    elif np.all(val == num7):
+        return [0,0,0,0,0,0,1,0,0]
+    elif np.all(val == num8):
+        return [0,0,0,0,0,0,0,1,0]
+    elif np.all(val == num9):
+        return [0,0,0,0,0,0,0,0,1]
 
     
 def backprop(n = 1):
@@ -94,6 +108,8 @@ def backprop(n = 1):
         e = 0.0
 
         global p
+        global o
+        global e
         for p in patterns:
             o = calculate_response(p)
             e += error(p, o)
@@ -113,6 +129,7 @@ def backprop(n = 1):
             #had to replicate h,x arrays to get dot to work?
             dw2 = np.dot(np.repeat(h[:, np.newaxis], 9, axis=1), do.T)             
             dw1 = np.dot(np.repeat(x[:, np.newaxis], 5, axis=1), dh)
+
             
             #replicating again?
             w2 += eta * np.repeat(dw2[:, np.newaxis], 9, axis=1)
