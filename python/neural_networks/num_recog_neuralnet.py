@@ -30,7 +30,7 @@ w1 = (np.random.random((n_input, n_hidden)) / 5) - 0.1    # First layer of synap
 h  = np.zeros((1, n_hidden))                              # Hidden layer
 w2 = (np.random.random((n_hidden, n_output)) / 5) - 0.1   # Second layer of synapses
 
-eta = 2.0   # Learning rate. This is higher than usual.
+eta = 1.0   # Learning rate. This is higher than usual.
 
 # The patterns to learn
 
@@ -73,7 +73,7 @@ def calculate_response(digit):
     
 def error(i, response):
     """Calculates the error function"""
-    return 0.5 * np.sum((target(i) - response) ** 2)
+    return 0.5 * (target(i) - response) ** 2
 
 
 def target(val):
@@ -111,36 +111,36 @@ def backprop(n = 1):
         global o
         global e
         for p in patterns:
-            o = calculate_response(p)
+            o = calculate_response(p) #calculate response of neurons to pattern p
             e += error(p, o)
             
             global do
             global dh
             global dw2
             global dw1
+            global h_error
             # Error in output layer
-            o_error = target(p) - o
+            o_error = error(p,o)
             do = o_error * logistic(o, deriv = True)
             
             # error in hidden layer
             h_error = np.dot(do, w2.T) 
             dh = h_error * logistic(h, deriv = True)
-            
-            #had to replicate h,x arrays to get dot to work?
-            dw2 = np.dot(np.repeat(h[:, np.newaxis], 9, axis=1), do.T)             
-            dw1 = np.dot(np.repeat(x[:, np.newaxis], 5, axis=1), dh)
+                                 
+            dw2 = np.dot(w2, do) 
+            dw1 = np.dot(w1, dh)
 
             
-            #replicating again?
-            w2 += eta * np.repeat(dw2[:, np.newaxis], 9, axis=1)
-            w1 += eta * np.repeat(dw1[:, np.newaxis], 5, axis=1)
+            for iii in np.arange(w2.T.shape[1]):
+                w2.T[iii] += eta * dw2[iii]
+                w1.T[iii] += eta * dw1[iii]
         
         E.append(e)  # Error at epoch i 
     return E  # Returns the list of error by epoch
             
 
 # Plot the error function by epoch
-backprop(10000)
+backprop(5000)
 plt.plot(E, "r-")
 plt.xlabel("Training epoch")
 plt.ylabel("Error")
@@ -150,12 +150,12 @@ plt.show()
 # Plot the responses to the XOR patterns
 y_end = [calculate_response(p) for p in patterns]
 fig, ax = plt.subplots()
-ax.axis([-0.5, 3.5, 0, 1])
+ax.axis([-0.5, 3.5, 0, 2])
 ax.set_xticks(np.arange(10))
 #ax.set_xticklabels(["(%s,%s)" % tuple(p) for p in patterns])
 ax.set_ylabel("Activation")
 ax.set_xlabel("Patterns")
-ax.bar(np.arange(9) - 0.25, y_end[1], 0.5, color='black')
+ax.bar(np.arange(9) - 0.25, y_end[2], 0.5, color='black')
 ax.set_title("Responses to XOR patterns")
 plt.show()
 
