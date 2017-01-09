@@ -1,7 +1,6 @@
-#try to make a recipe scraper
+#small script to scrape allrecipes page
 
 import urllib
-import re
 from bs4 import BeautifulSoup
 
 #using print url because the page is cleaner
@@ -22,3 +21,4 @@ rawtext = [s.getText().strip() for s in rawtext.findAll('li')]
 #use "section" to filter (both allrecipes and foodnetwork have "section" tags
 #with classes that indicate that the recipe is there)
 
+#get recipe from filtered text
