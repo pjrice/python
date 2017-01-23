@@ -29,3 +29,14 @@ rawtext2 = [s.getText().strip() for s in rawtext2]
 rawtext3 = soup.find_all('span', {'class': re.compile("recipe-directions")})
 rawtext3 = [s.getText().strip() for s in rawtext3]
 
+#split these up into html "object" groups (span, div, li, ul, etc),
+#each group searching for some common itemprop/class labels
+#try the re.compile stuff as well
+
+#this works for myrecipes.com
+#get recipe ingredients
+rawtext4 = soup.find_all('div', {'itemprop': 'recipeIngredient'})
+rawtext4 = [s.getText().strip() for s in rawtext4]
+#get directions
+rt5 = soup.find_all('div', {'itemprop': 'recipeInstructions'})
+rt5 = [s.getText().strip() for s in rt5]
