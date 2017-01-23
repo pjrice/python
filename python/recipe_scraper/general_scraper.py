@@ -32,6 +32,8 @@ rawtext3 = [s.getText().strip() for s in rawtext3]
 #split these up into html "object" groups (span, div, li, ul, etc),
 #each group searching for some common itemprop/class labels
 #try the re.compile stuff as well
+#have groups of commands for what we know "works" for common websites,
+#then have array  of queries for other sites as outlined above
 
 #this works for myrecipes.com
 #get recipe ingredients
