@@ -1,8 +1,12 @@
 #general script to scrape recipes
 
-import urllib
+import urllib.request
 import re
 from bs4 import BeautifulSoup
+import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
+#from IPython.core.display import Image, display
+#from PIL import Image
 
 ###############################################################################
 
@@ -116,12 +120,17 @@ image_links = [each.get('src') for each in images]
 for each in image_links:
     filename=each.split('/')[-1]
     urllib.request.urlretrieve(each, filename)
+    
+im = mpimg.imread(filename)
+plt.imshow(im)
 
 
 
 #ToDos:
     
 #fix removing invalid items from ingreds,recipe
+
+#get title of recipe
     
 #split these up into html "object" groups (span, div, li, ul, etc),
 #each group searching for some common itemprop/class labels
