@@ -73,7 +73,7 @@ for i in range(len(ingreds)):
     print('\n')
     print(ingreds[i])
     print('\n')
-    keep = input("Keep this item? [y/n]")
+    keep = input("Keep this item? [y/n] ")
     while not success:
         if keep is 'y' or keep is 'Y':
             success = True
@@ -81,7 +81,7 @@ for i in range(len(ingreds)):
             ingreds.remove(ingreds[i])
             success = True
         else:
-            print("Cannot interpret answer, try again [y/n]")
+            print("Cannot interpret answer, try again [y/n] ")
             
 
 for i in range(len(recipe)):
@@ -89,7 +89,7 @@ for i in range(len(recipe)):
     print('\n')
     print(recipe[i])
     print('\n')
-    keep = input("Keep this item? [y/n]")
+    keep = input("Keep this item? [y/n] ")
     while not success:
         if keep is'y' or keep is 'Y':
             success = True
@@ -97,7 +97,7 @@ for i in range(len(recipe)):
             recipe.remove(recipe[i]) #this shortens the length of recipe as you are looping through it
             success = True           #store an index of the items you want removed and do it after loop
         else:
-            print("Cannot interpret answer, try again [y/n]")
+            print("Cannot interpret answer, try again [y/n] ")
             
 ###############################################################################
 
@@ -131,6 +131,10 @@ plt.imshow(im)
 #fix removing invalid items from ingreds,recipe
 
 #get title of recipe
+
+#display each image retrieved and determine if it should be kept or not
+
+#store images in a better directory
     
 #split these up into html "object" groups (span, div, li, ul, etc),
 #each group searching for some common itemprop/class labels
