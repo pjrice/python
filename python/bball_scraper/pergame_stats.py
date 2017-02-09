@@ -12,13 +12,16 @@ linuxPath = '/media/storage/'
 winPath = 'C:/Users/ausma_000/Documents/'
 
 
-#a list of the stats we're grabbing
-statList = ['season','age','team_id','lg_id','pos','g','gs','mp_per_g',
-            'fg_per_g','fga_per_g','fg_pct','fg3_per_g','fg3a_per_g','fg3_pct',
-            'fg2_per_g','fg2a_per_g','fg2_pct','efg_pct','ft_per_g',
-            'fta_per_g','ft_pct','orb_per_g','drb_per_g','trb_per_g',
-            'ast_per_g','stl_per_g','blk_per_g','tov_per_g','pf_per_g',
-            'pts_per_g']
+#a list of the stats we're grabbing - these are the data-stat attribute labels
+#in the html
+#statList = ['season','age','team_id','lg_id','pos','g','gs','mp_per_g',
+#            'fg_per_g','fga_per_g','fg_pct','fg3_per_g','fg3a_per_g','fg3_pct',
+#            'fg2_per_g','fg2a_per_g','fg2_pct','efg_pct','ft_per_g',
+#            'fta_per_g','ft_pct','orb_per_g','drb_per_g','trb_per_g',
+#            'ast_per_g','stl_per_g','blk_per_g','tov_per_g','pf_per_g',
+#            'pts_per_g']
+
+statList = ['age','team_id']
 
 #check the raw html for data-stat attrs with our stat names
 statsHTML = [soup.find_all(attrs={"data-stat": statList[s]}) for s in range(statList.__len__())]
