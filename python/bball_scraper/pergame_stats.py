@@ -1,11 +1,15 @@
 #scrape basketball-reference.com player "per game" stats
 
+import os
 import csv
 import urllib.request
 from bs4 import BeautifulSoup
 
 data = urllib.request.urlopen(url).read()
 soup = BeautifulSoup(data, "lxml")
+
+linuxPath = '/media/storage/'
+winPath = 'C:/Users/ausma_000/Documents/'
 
 
 #a list of the stats we're grabbing
@@ -29,19 +33,27 @@ for s in range(statsHTML.__len__()):
 
 #get player name and add a new column
 playerHTML = soup.find_all('h1',{'itemprop': 'name'})
-playerName = playerHTML[0].getText().strip()
-#got player name, now replicate to match number of rows and insert
+#replicates by number of rows
+playerName = [playerHTML[0].getText().strip()]*stats[0].__len__()
+playerName[0] = 'Player Name'
+#adds to first position in stats list
+stats.insert(0,playerName)
     
 #print stats to csv
 zipStats = zip(*stats) #needs the * to work properly
-with open('/media/storage/python/python/bball_scraper/stats.csv','w') as statsFile:
+
+if os.path.isdir(linuxPath):
+    fname = linuxPath+'python/python/bball_scraper/stats.csv'
+else:
+    fname = winPath+'python/python/bball_scraper/stats.csv'
+                          
+with open(fname,'w') as statsFile:
     wr = csv.writer(statsFile)
     for row in zipStats:
         wr.writerow(row)
 
 
 #todo:
-    #get player name and add to stats
     #do the same for the per-game logs! example: http://www.basketball-reference.com/players/w/westbru01/gamelog/2009
     
     
