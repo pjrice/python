@@ -32,8 +32,24 @@ for s in range(statsHTML.__len__()):
     
 #got eem
 
+#remove "repeated header" rows
+#get index of rows to remove
+idx = list()
+count = 0
+for x in stats[0]:
+    if not(x.isnumeric()) and count!=0:
+        idx.append(count)
+        count += 1
+    else:
+        count +=1
+        
+#"remove" the rows (dissatisfied)  
+stats1 = list()
+for x in stats:
+    stats1.append([i for j, i in enumerate(x) if j not in idx])
+
 #print stats to csv
-zipStats = zip(*stats)
+zipStats = zip(*stats1)
 
 if os.path.isdir(linuxPath):
     fname = linuxPath+'python/python/bball_scraper/plyr_indivStats.csv'
@@ -48,5 +64,7 @@ with open(fname,'w') as statsFile:
 
 #todo:
     
-    #currently returns a pretty good dataset, but with a couple of "repeated 
-    #header" rows - find and remove those before saving to csv
+    #auto-generate links to grab stats from
+    #loop through these links
+    #save this as some type of database?
+    
