@@ -13,13 +13,10 @@ winPath = 'C:/Users/ausma_000/Documents/'
 
 #a list of the stats we're grabbing - these are the data-stat attribute labels
 #in the html
-
 statList = ['ranker','game_season','age','team_id','game_location',
             'opp_id','game_result','gs','mp','fg','fga','fg_pct','fg3','fg3a',
             'fg3_pct','ft','fta','ft_pct','orb','drb','trb','ast','stl','blk',
             'tov','pf','pts','game_score','plus_minus']
-
-#statList = ['age','team_id']
 
 #check the raw html for data-stat attrs with our stat names
 statsHTML = [soup.find_all(attrs={"data-stat": statList[s]}) for s in range(statList.__len__())]
