@@ -69,8 +69,22 @@ for i in range(len(plyrNames)):
     for ii in range(len(plyrNames[i])):
         plyrNames[i][ii] = plyrNames[i][ii][2:]
         plyrNames[i][ii] = plyrNames[i][ii][:-1]
+        
+#re-save names file to get rid of binary encoding
+#and yes this is fucking dumb
+if os.path.isdir(linuxPath):
+    fname = linuxPath+'python/python/bball_scraper/plyrNames.csv'
+else:
+    fname = winPath+'python/python/bball_scraper/plyrNames.csv'
+    
+with open(fname,'w') as nameFile:
+    wr = csv.writer(nameFile)
+    for row in plyrNames:
+        wr.writerow(row)
 
 ###############################################################################
+
+#NEED TO CHECK FOR DUPLICATE NAMES
 
 #make gamelog links    
 linkPre = 'http://www.basketball-reference.com/players/'
@@ -81,7 +95,7 @@ plyrLink = list()
 
 for i in range(len(plyrLink)):
     plyrLink[i] = linkPre+plyrLink[i]+linkPost
-    
+
 #save links
 linuxPath = '/home/ausmanpa/Documents/gp/'
 winPath = 'C:/Users/ausma_000/Documents/'
